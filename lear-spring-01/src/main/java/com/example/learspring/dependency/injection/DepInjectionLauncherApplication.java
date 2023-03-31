@@ -1,7 +1,7 @@
 package com.example.learspring.dependency.injection;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -27,11 +27,12 @@ public class DepInjectionLauncherApplication {
 }
 
 @Component
+@AllArgsConstructor
 class YourBusinessClass {
 
-    @Autowired
+    //@Autowired    // not required as we are creating its constructor using @AllArgsConstructor, spring automatically uses constructor autowiring
     Dependency1 dependency1;
-    @Autowired
+    //@Autowired    // not required as we are creating its constructor using @AllArgsConstructor, spring automatically uses constructor autowiring
     Dependency2 dependency2;
 
     @Override
