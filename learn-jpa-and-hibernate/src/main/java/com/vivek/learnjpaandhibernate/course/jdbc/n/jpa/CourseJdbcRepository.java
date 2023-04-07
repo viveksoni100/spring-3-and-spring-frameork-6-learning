@@ -1,6 +1,6 @@
-package com.vivek.learnjpaandhibernate.course.jdbc;
+package com.vivek.learnjpaandhibernate.course.jdbc.n.jpa;
 
-import com.vivek.learnjpaandhibernate.course.dto.Course;
+import com.vivek.learnjpaandhibernate.course.entities.Course;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
