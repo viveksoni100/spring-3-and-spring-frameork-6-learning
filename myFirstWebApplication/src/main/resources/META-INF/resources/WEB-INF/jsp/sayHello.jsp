@@ -1,6 +1,11 @@
 <html>
-<head><title>Hello JSP</title></head>
+<head>
+    <title> My first HTML Page - JSP</title>
+</head>
 <body>
-    <h3>Say Hello to the most powerful engineer of all time!</h3>
+<h1>Heading 1</h1>
+<h2>Heading 2</h2>
+
+My first html page with body - JSP
 </body>
 </html>
