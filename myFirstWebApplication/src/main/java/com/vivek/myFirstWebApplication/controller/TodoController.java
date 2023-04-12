@@ -47,7 +47,7 @@ public class TodoController {
         if(result.hasErrors()) {
             return "todo";
         }
-        String username = todo.getUsername();
+        String username = getLoggedInUsername();
         toDoService.addTodo(username, todo.getDescription(),
                 todo.getTargetDate(), false);
         return "redirect:list-todos";
@@ -74,7 +74,7 @@ public class TodoController {
             return "todo";
         }
 
-        String username = todo.getUsername();
+        String username = getLoggedInUsername();
         todo.setUsername(username);
         toDoService.updateTodo(todo);
         return "redirect:list-todos";
