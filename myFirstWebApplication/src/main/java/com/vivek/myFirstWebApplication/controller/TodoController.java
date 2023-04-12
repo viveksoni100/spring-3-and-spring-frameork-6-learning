@@ -4,6 +4,8 @@ import com.vivek.myFirstWebApplication.service.ToDoService;
 import com.vivek.myFirstWebApplication.todo.ToDo;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -21,14 +23,20 @@ public class TodoController {
 
     @GetMapping("/list-todos")
     public String listAllTodos(ModelMap modelMap) {
-        List<ToDo> toDoList = toDoService.findByUsername("vivek");
+        String username = getLoggedInUsername();
+        List<ToDo> toDoList = toDoService.findByUsername(username);
         modelMap.put("todos", toDoList);
         return "listTodos";
     }
 
+    private String getLoggedInUsername() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication.getName();
+    }
+
     @GetMapping("/add-todo")
     public String showNewTodoPage(ModelMap model) {
-        String username = (String) model.get("name");
+        String username = getLoggedInUsername();
         ToDo toDo = new ToDo(0, username, "", LocalDate.now().plusYears(1), false);
         model.put("todo", toDo);
         return "todo";
