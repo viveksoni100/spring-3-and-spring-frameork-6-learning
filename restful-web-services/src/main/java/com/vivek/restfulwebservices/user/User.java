@@ -1,6 +1,8 @@
 package com.vivek.restfulwebservices.user;
 
 import jakarta.persistence.Entity;
+import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -14,7 +16,9 @@ import java.time.LocalDate;
 public class User {
 
     private Integer id;
+    @Size(min = 3)
     private String name;
+    @Past   // birthdate should be in the past
     private LocalDate birthDate;
 
 }
