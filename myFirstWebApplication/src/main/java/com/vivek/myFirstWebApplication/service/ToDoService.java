@@ -1,6 +1,6 @@
 package com.vivek.myFirstWebApplication.service;
 
-import com.vivek.myFirstWebApplication.todo.ToDo;
+import com.vivek.myFirstWebApplication.todo.Todo;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
@@ -12,38 +12,38 @@ import java.util.function.Predicate;
 @Service
 public class ToDoService {
 
-    private static List<ToDo> todos = new ArrayList<>();
+    private static List<Todo> todos = new ArrayList<>();
     private static int todosCount = 0;
 
     static {
-        todos.add(new ToDo(++todosCount, "vivek", "Learn react", LocalDate.now().plusYears(1), false));
-        todos.add(new ToDo(++todosCount, "vivek", "Learn angular", LocalDate.now().plusYears(2), false));
-        todos.add(new ToDo(++todosCount, "vivek", "Learn spring security", LocalDate.now().plusYears(3), false));
+        todos.add(new Todo(++todosCount, "vivek", "Learn react", LocalDate.now().plusYears(1), false));
+        todos.add(new Todo(++todosCount, "vivek", "Learn angular", LocalDate.now().plusYears(2), false));
+        todos.add(new Todo(++todosCount, "vivek", "Learn spring security", LocalDate.now().plusYears(3), false));
     }
 
-    public List<ToDo> findByUsername(String username) {
-        Predicate<? super ToDo> predicate = todo -> todo.getUsername().equalsIgnoreCase(username);
+    public List<Todo> findByUsername(String username) {
+        Predicate<? super Todo> predicate = todo -> todo.getUsername().equalsIgnoreCase(username);
         return todos.stream().filter(predicate).toList();
     }
 
     public void addTodo(String username, String description, LocalDate targetDate, Boolean done) {
-        ToDo toDo = new ToDo(++todosCount, username, description, targetDate, done);
+        Todo toDo = new Todo(++todosCount, username, description, targetDate, done);
         todos.add(toDo);
     }
 
     public void deleteById(int id) {
-        Predicate<? super ToDo> predicate = todo -> todo.getId() == id;
+        Predicate<? super Todo> predicate = todo -> todo.getId() == id;
         todos.removeIf(predicate);
     }
 
-    public void updateTodo(@Valid ToDo todo) {
+    public void updateTodo(@Valid Todo todo) {
         deleteById(todo.getId());
         todos.add(todo);
     }
 
-    public ToDo findById(int id) {
-        Predicate<? super ToDo> predicate = todo -> todo.getId() == id;
-        ToDo todo = todos.stream().filter(predicate).findFirst().get();
+    public Todo findById(int id) {
+        Predicate<? super Todo> predicate = todo -> todo.getId() == id;
+        Todo todo = todos.stream().filter(predicate).findFirst().get();
         return todo;
     }
 

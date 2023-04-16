@@ -1,7 +1,7 @@
 package com.vivek.myFirstWebApplication.controller;
 
 import com.vivek.myFirstWebApplication.service.ToDoService;
-import com.vivek.myFirstWebApplication.todo.ToDo;
+import com.vivek.myFirstWebApplication.todo.Todo;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
-@Controller
-@SessionAttributes("name")
+//@Controller
+//@SessionAttributes("name")
 public class TodoController {
 
     @Autowired
@@ -24,7 +24,7 @@ public class TodoController {
     @GetMapping("/list-todos")
     public String listAllTodos(ModelMap modelMap) {
         String username = getLoggedInUsername();
-        List<ToDo> toDoList = toDoService.findByUsername(username);
+        List<Todo> toDoList = toDoService.findByUsername(username);
         modelMap.put("todos", toDoList);
         return "listTodos";
     }
@@ -37,13 +37,13 @@ public class TodoController {
     @GetMapping("/add-todo")
     public String showNewTodoPage(ModelMap model) {
         String username = getLoggedInUsername();
-        ToDo toDo = new ToDo(0, username, "", LocalDate.now().plusYears(1), false);
+        Todo toDo = new Todo(0, username, "", LocalDate.now().plusYears(1), false);
         model.put("todo", toDo);
         return "todo";
     }
 
     @PostMapping("/add-todo")
-    public String addNewTodo(ModelMap model, @Valid ToDo todo, BindingResult result) {
+    public String addNewTodo(ModelMap model, @Valid Todo todo, BindingResult result) {
         if(result.hasErrors()) {
             return "todo";
         }
@@ -62,13 +62,13 @@ public class TodoController {
 
     @RequestMapping(value="update-todo", method = RequestMethod.GET)
     public String showUpdateTodoPage(@RequestParam int id, ModelMap model) {
-        ToDo todo = toDoService.findById(id);
+        Todo todo = toDoService.findById(id);
         model.addAttribute("todo", todo);
         return "todo";
     }
 
     @RequestMapping(value="update-todo", method = RequestMethod.POST)
-    public String updateTodo(ModelMap model, @Valid ToDo todo, BindingResult result) {
+    public String updateTodo(ModelMap model, @Valid Todo todo, BindingResult result) {
 
         if(result.hasErrors()) {
             return "todo";

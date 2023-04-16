@@ -24,8 +24,9 @@ public class SpringSecurityConfiguration {
         Function<String, String> passwordEncoder = input -> passwordEncoder().encode(input);
         UserDetails userDetails = createNewUser(passwordEncoder, "vivek", "pass");
         UserDetails userDetailsNew = createNewUser(passwordEncoder, "devangi", "password");
+        UserDetails userDetails28 = createNewUser(passwordEncoder, "in28minutes", "password");
 
-        return new InMemoryUserDetailsManager(userDetails, userDetailsNew);
+        return new InMemoryUserDetailsManager(userDetails, userDetailsNew, userDetails28);
     }
 
     private UserDetails createNewUser(Function<String, String> passwordEncoder, String username, String password) {
