@@ -16,9 +16,9 @@ import java.time.LocalDate;
 public class User {
 
     private Integer id;
-    @Size(min = 3)
+    @Size(min = 3, message = "name should have atleast 3 characters")
     private String name;
-    @Past   // birthdate should be in the past
+    @Past(message = "birthdate should be in the past")   // birthdate should be in the past
     private LocalDate birthDate;
 
 }
