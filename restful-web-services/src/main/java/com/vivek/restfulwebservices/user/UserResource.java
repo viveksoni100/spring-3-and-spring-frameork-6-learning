@@ -38,6 +38,9 @@ public class UserResource {
 
         EntityModel<User> entityModel = EntityModel.of(user);
 
+        /**
+         * concept of HATEOAS : we are giving link for finding all users along with the users/id api
+         */
         WebMvcLinkBuilder link = linkTo(methodOn(this.getClass()).retrieveAllUsers());
         entityModel.add(link.withRel("all-users"));
 
