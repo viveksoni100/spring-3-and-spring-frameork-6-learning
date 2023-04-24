@@ -1,12 +1,10 @@
 import './App.css'
-import { CounterButton } from './components/counter/Counter'
+import { Counter } from './components/counter/Counter';
 
 function App() {
   return (
     <div className="App">
-      <CounterButton by={1}></CounterButton>
-      <CounterButton by={2}></CounterButton>
-      <CounterButton by={5}></CounterButton>
+      <Counter></Counter>
     </div>
   );
 }
