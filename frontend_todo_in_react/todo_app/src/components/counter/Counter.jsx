@@ -2,14 +2,6 @@ import { useState } from 'react'
 import './Counter.css'
 import { PropTypes } from 'prop-types'
 
-export default function Counter() {
-    <div>
-        <CounterButton by={1}></CounterButton>
-        <CounterButton by={2}></CounterButton>
-        <CounterButton by={5}></CounterButton>
-    </div>
-}
-
 export function CounterButton({by}) {
 
     // useState is a one of many hooks in react
