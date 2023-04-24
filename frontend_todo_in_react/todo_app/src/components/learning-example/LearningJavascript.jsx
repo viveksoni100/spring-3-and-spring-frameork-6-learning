@@ -16,7 +16,6 @@ const person = {
     }
 }
 
-
 export default function LearningJavaScript() {
     return (
         <div>
