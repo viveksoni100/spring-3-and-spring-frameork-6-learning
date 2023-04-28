@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { BrowserRouter, Route, Routes, useNavigate, useParams } from "react-router-dom"
+import { BrowserRouter, Link, Route, Routes, useNavigate, useParams } from "react-router-dom"
 import './TodoApp.css'
 
 export default function TodoApp() {
@@ -10,6 +10,8 @@ export default function TodoApp() {
                     <Route path='/' element={<LoginComponent></LoginComponent>}></Route>
                     <Route path='/login' element={<LoginComponent></LoginComponent>}></Route>
                     <Route path='/welcome/:username' element={<WelcomeComponent></WelcomeComponent>}></Route>
+                    <Route path='/todos' element={<ListTodosComponent></ListTodosComponent>}></Route>
+                    
                     <Route path='*' element={<ErrorComponent></ErrorComponent>}></Route>
                 </Routes>
             </BrowserRouter>
@@ -72,6 +74,7 @@ function WelcomeComponent() {
     return (
         <div className="Welcome">
             Welcome Component - {username}
+            <Link to="/todos">todos</Link>
         </div>
     )
 }
@@ -80,6 +83,36 @@ function ErrorComponent() {
     return (
         <div className="ErrorComponent">
             હાલ ભાગ ડોફા
+        </div>
+    )
+}
+
+function ListTodosComponent() {
+
+    const todos =[
+        {id: 1, description: 'Learn AWS'},
+        {id: 2, description: 'Learn Docker'},
+        {id: 3, description: 'Learn gRPC'}
+    ]
+
+    return (
+        <div className="ListTodosComponent">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <td>id</td>
+                        <td>description</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {todos.map(todo => (
+                        <tr key={todo.id}>
+                            <td>{todo.id}</td>
+                            <td>{todo.description}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
     )
 }
