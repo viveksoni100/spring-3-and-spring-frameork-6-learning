@@ -26,8 +26,8 @@ public class JwtAuthenticationController {
         
         var authenticationToken = 
                 new UsernamePasswordAuthenticationToken(
-                        jwtTokenRequest.username(), 
-                        jwtTokenRequest.password());
+                        jwtTokenRequest.getUsername(),
+                        jwtTokenRequest.getPassword());
         
         var authentication = 
                 authenticationManager.authenticate(authenticationToken);

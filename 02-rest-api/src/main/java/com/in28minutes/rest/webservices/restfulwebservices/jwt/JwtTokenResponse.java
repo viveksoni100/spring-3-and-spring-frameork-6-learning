@@ -1,5 +1,14 @@
 package com.in28minutes.rest.webservices.restfulwebservices.jwt;
 
-public record JwtTokenResponse(String token) {}
+import lombok.*;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
+public class JwtTokenResponse {
+    String token;
+}
 
 
