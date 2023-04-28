@@ -6,7 +6,6 @@ export default function LoginComponent() {
 
     const [username, setUsername] = useState('vivek')
     const [password, setPassword] = useState('pass')
-    const [showSuccessMsg, setShowSuccessMsg] = useState(false)
     const [showErrorMsg, setShowErrorMsg] = useState(false)
     const authContext = useAuth()
     const navigate = useNavigate()
@@ -40,11 +39,9 @@ export default function LoginComponent() {
 
     function handleSubmit(event) {
         if(authContext.login(username, password)) {
-            setShowSuccessMsg(true)
             setShowErrorMsg(false)
             navigate(`/welcome/${username}`)
         } else {
-            setShowSuccessMsg(false)
             setShowErrorMsg(true)
         }
     }

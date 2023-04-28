@@ -6,7 +6,6 @@ export const useAuth = () => useContext(AuthContext)
 
 export default function AuthProvider({ children }) {
 
-    const [number, setNumber] = useState(0)
     const [isAuthenticated, setAuthenticated] = useState(false)
 
     // setInterval(
@@ -27,7 +26,7 @@ export default function AuthProvider({ children }) {
         setAuthenticated(false)
     }
 
-    const valueToBeShared = { number, isAuthenticated, login, logout }
+    const valueToBeShared = { isAuthenticated, login, logout }
     return (
         < AuthContext.Provider value = { valueToBeShared } >
             { children }
