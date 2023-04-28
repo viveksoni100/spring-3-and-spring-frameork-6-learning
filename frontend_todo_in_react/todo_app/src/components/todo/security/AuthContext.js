@@ -8,10 +8,6 @@ export default function AuthProvider({ children }) {
 
     const [isAuthenticated, setAuthenticated] = useState(false)
 
-    // setInterval(
-    //     () => setNumber(number + 1), 5000
-    // )
-
     function login(username, password) {
         if (username === 'vivek' && password === 'password') {
             setAuthenticated(true)
