@@ -23,11 +23,11 @@ export default function AuthProvider({ children }) {
         }
     }
 
-    // function logout() {
-    //     setAuthenticated(false)
-    // }
+    function logout() {
+        setAuthenticated(false)
+    }
 
-    const valueToBeShared = { number, isAuthenticated, setAuthenticated, login }
+    const valueToBeShared = { number, isAuthenticated, login, logout }
     return (
         < AuthContext.Provider value = { valueToBeShared } >
             { children }
