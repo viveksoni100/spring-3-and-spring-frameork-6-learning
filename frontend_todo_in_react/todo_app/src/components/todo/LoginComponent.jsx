@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { useAuth } from "./security/AuthContext"
 
 export default function LoginComponent() {
 
@@ -7,11 +8,11 @@ export default function LoginComponent() {
     const [password, setPassword] = useState('pass')
     const [showSuccessMsg, setShowSuccessMsg] = useState(false)
     const [showErrorMsg, setShowErrorMsg] = useState(false)
+    const authContext = useAuth()
     const navigate = useNavigate()
 
     return (
         <div className="Login">
-            {showSuccessMsg && <div className="successMsg">authenticated successfully</div>}
             {showErrorMsg && <div className="errorMsg">authentication failed</div>}
             <div className="LoginForm">
                 <div>
@@ -38,7 +39,7 @@ export default function LoginComponent() {
     }
 
     function handleSubmit(event) {
-        if (username === 'vivek' && password === 'password') {
+        if(authContext.login(username, password)) {
             setShowSuccessMsg(true)
             setShowErrorMsg(false)
             navigate(`/welcome/${username}`)

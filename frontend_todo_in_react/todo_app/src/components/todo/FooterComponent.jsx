@@ -1,5 +1,4 @@
 import { useAuth } from "./security/AuthContext"
-import { useContext } from "react"
 
 export default function FooterComponent() {
 
