@@ -1,0 +1,22 @@
+{
+  "name": "first-npm-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viveksoni100/spring-3-and-spring-frameork-6-learning.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/viveksoni100/spring-3-and-spring-frameork-6-learning/issues"
+  },
+  "homepage": "https://github.com/viveksoni100/spring-3-and-spring-frameork-6-learning#readme",
+  "dependencies": {
+    "jquery": "^3.6.4"
+  }
+}
