@@ -5,7 +5,7 @@ import {deleteTodosByUserAndIdApi} from "./api/TodoApiServicce";
 export default function ListTodosComponent() {
 
     const [todos, setTodos] = useState([]);
-    const [msg, setMsg] = useState(null)
+    const [msg, setMsg] = useState(null);
 
     useEffect(
         () => refreshTodos(), []
@@ -21,7 +21,7 @@ export default function ListTodosComponent() {
         deleteTodosByUserAndIdApi('in28minutes', parseInt(id))
             .then(
                 () => {
-                    setMsg(`Delete of todos with id = ${id} successful`)
+                    setMsg(`Delete of todos with id = ${id} successful`);
                     refreshTodos()
                 }
             )

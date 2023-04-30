@@ -1,19 +1,19 @@
 import {createContext, useContext, useState} from "react";
 
-export const AuthContext = createContext()
+export const AuthContext = createContext();
 
-export const useAuth = () => useContext(AuthContext)
+export const useAuth = () => useContext(AuthContext);
 
 export default function AuthProvider({children}) {
 
-    const [isAuthenticated, setAuthenticated] = useState(false)
+    const [isAuthenticated, setAuthenticated] = useState(false);
 
     function login(username, password) {
         if (username === 'vivek' && password === 'password') {
-            setAuthenticated(true)
+            setAuthenticated(true);
             return true
         } else {
-            setAuthenticated(false)
+            setAuthenticated(false);
             return false
         }
     }
@@ -24,7 +24,7 @@ export default function AuthProvider({children}) {
 
     const valueToBeShared = {isAuthenticated, login, logout}
     return (
-        < AuthContext.Provider value={valueToBeShared}>
+        <AuthContext.Provider value={valueToBeShared}>
             {children}
         </AuthContext.Provider>
     )
