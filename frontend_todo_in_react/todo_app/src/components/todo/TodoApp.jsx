@@ -9,6 +9,7 @@ import LoginComponent from "./LoginComponent"
 import AuthProvider, { useAuth } from "./security/AuthContext"
 import './TodoApp.css'
 import React from "react";
+import TodoComponent from "./TodoComponent";
 
 function AuthenticatedRoute({ children }) {
     const authContext = useAuth()
@@ -24,21 +25,25 @@ export default function TodoApp() {
                 <BrowserRouter>
                     <HeaderComponent/>
                     <Routes>
-                        <Route path='/' element={<LoginComponent></LoginComponent>}></Route>
-                        <Route path='/login' element={<LoginComponent></LoginComponent>}></Route>
+                        <Route path='/' element={<LoginComponent/>}/>
+                        <Route path='/login' element={<LoginComponent/>}/>
                         <Route path='/welcome/:username' element={
                             <AuthenticatedRoute>
-                                <WelcomeComponent></WelcomeComponent>
+                                <WelcomeComponent/>
                             </AuthenticatedRoute>}/>
                         <Route path='/todos' element={
                             <AuthenticatedRoute>
-                                <ListTodosComponent></ListTodosComponent>
+                                <ListTodosComponent/>
+                            </AuthenticatedRoute>}/>
+                        <Route path='/todo/:id' element={
+                            <AuthenticatedRoute>
+                                <TodoComponent/>
                             </AuthenticatedRoute>}/>
                         <Route path='/logout' element={
                             <AuthenticatedRoute>
-                                <LogoutComponent></LogoutComponent>
+                                <LogoutComponent/>
                             </AuthenticatedRoute>}/>
-                        <Route path='*' element={<ErrorComponent></ErrorComponent>}></Route>
+                        <Route path='*' element={<ErrorComponent/>}/>
                     </Routes>
                     <FooterComponent/>
                 </BrowserRouter>
