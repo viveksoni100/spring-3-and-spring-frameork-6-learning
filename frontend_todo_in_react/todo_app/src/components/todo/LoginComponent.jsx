@@ -4,11 +4,11 @@ import { useAuth } from "./security/AuthContext"
 
 export default function LoginComponent() {
 
-    const [username, setUsername] = useState('vivek')
-    const [password, setPassword] = useState('pass')
-    const [showErrorMsg, setShowErrorMsg] = useState(false)
-    const authContext = useAuth()
-    const navigate = useNavigate()
+    const [username, setUsername] = useState('vivek');
+    const [password, setPassword] = useState('pass');
+    const [showErrorMsg, setShowErrorMsg] = useState(false);
+    const authContext = useAuth();
+    const navigate = useNavigate();
 
     return (
         <div className="Login">

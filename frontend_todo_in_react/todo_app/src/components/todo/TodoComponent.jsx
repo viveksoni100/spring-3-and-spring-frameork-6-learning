@@ -1,8 +1,10 @@
 import {useParams} from "react-router-dom";
-import {retrieveTodoApi} from "./api/TodoApiServicce";
+import {createTodoApi, retrieveTodoApi, updateTodoApi} from "./api/TodoApiServicce";
 import {useAuth} from "./security/AuthContext";
 import React, {useEffect, useState} from "react";
 import {ErrorMessage, Field, Form, Formik} from "formik";
+import {useNavigate} from "react-router-dom";
+import moment from "moment";
 
 export default function TodoComponent() {
 
@@ -11,6 +13,7 @@ export default function TodoComponent() {
     const username = authContext.username;
     const [desc, setDesc] = useState('');
     const [targetDate, setTargetDate] = useState(new Date());
+    const navigate = useNavigate();
 
     /**
      * refresh only when the id value changes
@@ -20,12 +23,15 @@ export default function TodoComponent() {
     );
 
     function retrieveTodo() {
-        retrieveTodoApi(username, id)
-            .then(res => {
-                setDesc(res.data.description);
-                setTargetDate(res.data.targetDate);
-            })
-            .catch(err => console.log(err));
+        if (id != -1) {
+            retrieveTodoApi(username, id)
+                .then(res => {
+                    setDesc(res.data.description);
+                    setTargetDate(res.data.targetDate);
+                })
+                .catch(err => console.log(err));
+            console.log(id);
+        }
     }
 
     /**
@@ -33,21 +39,42 @@ export default function TodoComponent() {
      * @param updated values made available by formik
      */
     function onSubmit(values) {
-        console.log(values);
+        const todo = {
+            id: id,
+            username: username,
+            description: values.desc,
+            targetDate: values.targetDate,
+            done: false
+        };
+        if (id == -1) {
+            createTodoApi(username, todo)
+                .then(res => {
+                    navigate('/todos');
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+        } else {
+            updateTodoApi(username, id, todo)
+                .then(res => {
+                    navigate('/todos');
+                })
+                .catch(err => console.log(err));
+        }
     }
 
     function validate(values) {
+        console.log(values);
         let err = {
             /*desc: 'enter a valid description',
             targetDate: 'enter a valid target date'*/
         };
-        if(values.desc.length<5) {
+        if (values.desc.length < 5) {
             err.desc = 'enter at least 5 characters';
         }
-        if(values.targetDate == null) {
+        if (values.targetDate == null || values.targetDate == '' || !moment(values.targetDate).isValid()) {
             err.targetDate = 'Enter a target date';
         }
-        console.log(values);
         return err;
     }
 
