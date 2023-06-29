@@ -1,13 +1,3 @@
-import { apiClient } from './ApiClient';
+import {apiClient} from './ApiClient';
 
-export const retrieveHelloWorldBean = () => apiClient.get('/hello-world-bean');
-export const retrieveHelloWorldBeanPathVariable = (username, token) => apiClient.get(`/hello-world/path-variable/${username}`, {
-    headers: {
-        Authorization: token
-    }
-});
-export const executeBasicAuthenticationService = (token) => apiClient.get(`/basicauth`, {
-    headers: {
-        Authorization: token
-    }
-});
+export const retrieveHelloWorldBeanPathVariable = (username) => apiClient.get(`/hello-world/path-variable/${username}`);
