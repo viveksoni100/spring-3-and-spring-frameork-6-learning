@@ -1,28 +1,28 @@
-import {Link, useParams} from "react-router-dom"
+import {Link, useParams} from "react-router-dom";
 import {useState} from "react";
-import {retrieveHelloWorldBean, retrieveHelloWorldBeanPathVariable} from "./api/HelloWorldApiServicce"
+import {retrieveHelloWorldBeanPathVariable} from "./api/HelloWorldApiServicce";
+import {useAuth} from "./security/AuthContext";
 
 export default function WelcomeComponent() {
 
-    const {username} = useParams()
-    const [msg, setMsg] = useState(null)
+    const {username} = useParams();
+    const [msg, setMsg] = useState(null);
+    const authContext = useAuth();
 
     function successfulResponse(response) {
-        setMsg(response.data.message + "-" + response.status)
-        console.log(response)
+        setMsg(response.data.message + "-" + response.status);
+        console.log(response);
     }
 
     function errorResponse(error) {
-        console.log(error)
+        console.log(error);
     }
 
     function callHelloWorldRestApi() {
-        /*retrieveHelloWorldBean()
+
+        retrieveHelloWorldBeanPathVariable("vivek", authContext.token)
             .then((response) => successfulResponse(response))
-            .catch((error) => errorResponse(error))*/
-        retrieveHelloWorldBeanPathVariable("vivek")
-            .then((response) => successfulResponse(response))
-            .catch((error) => errorResponse(error))
+            .catch((error) => errorResponse(error));
     }
 
     return (
