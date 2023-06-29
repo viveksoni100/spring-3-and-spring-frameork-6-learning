@@ -9,35 +9,36 @@ export default function AuthProvider({children}) {
 
     const [isAuthenticated, setAuthenticated] = useState(false);
     const [username, setUsername] = useState(null);
+    const [token, setToken] = useState(null);
 
-    function login(username, password) {
+    async function login(username, password) {
 
         const baToken = "Basic " + window.btoa(username + ":" + password);
 
-        executeBasicAuthenticationService(baToken)
-            .then(res => console.log(res))
-            .catch(err => console.log(err));
+        try {
+            const res = await executeBasicAuthenticationService(baToken);
 
-        setAuthenticated(false)
-    }
-
-    /*function login(username, password) {
-        if (username === 'vivek' && password === 'password') {
-            setAuthenticated(true);
-            setUsername(username);
-            return true
-        } else {
-            setAuthenticated(false);
-            setUsername(null);
-            return false
+            if (res.status === 200) {
+                setAuthenticated(true);
+                setUsername(username);
+                setToken(baToken);
+                return true
+            } else {
+                logout();
+                return false
+            }
+        } catch (err) {
+            logout();
         }
-    }*/
+    }
 
     function logout() {
-        setAuthenticated(false)
+        setAuthenticated(false);
+        setToken(null);
+        setUsername(null);
     }
 
-    const valueToBeShared = {isAuthenticated, login, logout, username};
+    const valueToBeShared = {isAuthenticated, login, logout, username, token};
     return (
         <AuthContext.Provider value={valueToBeShared}>
             {children}
