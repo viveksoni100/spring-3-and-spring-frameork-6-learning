@@ -1,14 +1,13 @@
 package com.vivek.restfulwebservices.security;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 
-@Configuration
+//@Configuration - commented because I want to use JWT authentication, not basic authentication
 public class BasicAuthenticationSecurityConfiguration {
 
     // filter chain
