@@ -1,5 +1,8 @@
 package com.vivek.restfulwebservices.todo;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -9,8 +12,11 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@Entity
 public class Todo {
 
+    @Id
+    @GeneratedValue
     private Integer id;
 
     private String username;
