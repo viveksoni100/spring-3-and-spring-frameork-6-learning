@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MyMathTest {
 
     @Test
-    void test() {
+    void calculateSum_ThreeMemberArray() {
         MyMath math = new MyMath();
         int result = math.calculateSum(new int[]{1,2,3});
 
